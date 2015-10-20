@@ -54,6 +54,34 @@ namespace RQElim {
       }
       return EQ;
     }
+
+    inline bool isZero() const {
+      return coefficient.isZero();
+    }
+
+    std::vector<int> derivativeMultidegree(int var) const {
+      std::vector<int> derivMD;
+      for (auto i : multidegree) {
+	if (multidegree[i] == 0) {
+	  derivMD.push_back(0);
+	} else if (i == var) {
+	  derivMD.push_back(i - 1);
+	} else {
+	  derivMD.push_back(i);
+	}
+      }
+      return derivMD;
+    }
+
+    Monomial derivative(int var) {
+      if (multidegree[var] == 0) {
+	return Monomial(Rational(0, 1), multidegree);
+      }
+      auto rVal = Rational(multidegree[var], 1);
+      auto resultCoeff = rVal * coefficient;
+      auto derivMultidegree = derivativeMultidegree(var);
+      return Monomial(resultCoeff, derivMultidegree);
+    }
   };
 
 }

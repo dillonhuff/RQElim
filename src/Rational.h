@@ -1,8 +1,10 @@
 #ifndef __RQELIM_RATIONAL_H__
 #define __RQELIM_RATIONAL_H__
 
+
 namespace RQElim {
   
+  // Horrible temporary fill in for a real big num implementation
   class Rational {
     int numerator;
     int denominator;
@@ -17,6 +19,14 @@ namespace RQElim {
 
     inline bool operator!=(const Rational other) const {
       return !(*this == other);
+    }
+
+    inline bool isZero() const {
+      return numerator == 0;
+    }
+
+    Rational operator*(const Rational other) const {
+      return Rational(numerator*other.numerator, denominator*other.denominator);
     }
   };
 

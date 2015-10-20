@@ -32,6 +32,12 @@ namespace RQElim {
 
     Polynomial derivative(int var) {
       std::vector<Monomial> derivTerms;
+      for (auto term : terms) {
+	auto termDeriv = term.derivative(var);
+	if (!termDeriv.isZero()) {
+	  derivTerms.push_back(termDeriv);
+	}
+      }
       return Polynomial(derivTerms);
     }
   };
