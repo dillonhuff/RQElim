@@ -20,6 +20,25 @@ namespace RQElim {
 
     inline int numVars() const { return multidegree.size(); }
 
+    bool operator==(const Monomial& other) const {
+      if (numVars() != other.numVars()) {
+	std::cout << "Error: == of 2 monomials with different "
+		  << "numbers of variables" << std::endl;
+	throw;
+      }
+      if (coefficient != other.coefficient) {
+	return false;
+      }
+      for (int i = 0; i < numVars(); i++) {
+	if (multidegree[i] != other.multidegree[i]) {
+	  return false;
+	}
+      }
+      return true;
+    }
+
+    inline bool operator!=(const Monomial& other) const { return !(*this == other); }
+
     Comparison lexCmp(const Monomial& other) {
       if (numVars() != other.numVars()) {
 	std::cout << "Error: lexCmp of 2 monomials with different "

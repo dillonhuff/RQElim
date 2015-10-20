@@ -6,4 +6,5 @@ namespace RQElim {
   void allMonomialTests();
 
 }
+
 #endif
