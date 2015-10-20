@@ -61,13 +61,13 @@ namespace RQElim {
 
     std::vector<int> derivativeMultidegree(int var) const {
       std::vector<int> derivMD;
-      for (auto i : multidegree) {
+      for (int i = 0; i < numVars(); i++) {
 	if (multidegree[i] == 0) {
 	  derivMD.push_back(0);
 	} else if (i == var) {
-	  derivMD.push_back(i - 1);
+	  derivMD.push_back(multidegree[i] - 1);
 	} else {
-	  derivMD.push_back(i);
+	  derivMD.push_back(multidegree[i]);
 	}
       }
       return derivMD;
