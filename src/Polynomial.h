@@ -11,8 +11,10 @@ namespace RQElim {
     std::vector<Monomial> terms;
     
   public:
-    Polynomial(std::vector<Monomial> ts)
-      : terms(ts) {}
+    Polynomial(std::vector<Monomial> ts) {
+      terms = ts;
+      std::sort(terms.begin(), terms.end(), MonomialLessThan());
+    }
 
     inline int numTerms() const { return terms.size(); }
 

@@ -39,7 +39,7 @@ namespace RQElim {
 
     inline bool operator!=(const Monomial& other) const { return !(*this == other); }
 
-    Comparison lexCmp(const Monomial& other) {
+    Comparison lexCmp(const Monomial& other) const {
       if (numVars() != other.numVars()) {
 	std::cout << "Error: lexCmp of 2 monomials with different "
 		  << "numbers of variables" << std::endl;
@@ -93,5 +93,10 @@ namespace RQElim {
 
   };
 
+  struct MonomialLessThan {
+    inline bool operator()(const Monomial& m1, const Monomial& m2) const {
+      return m1.lexCmp(m2) == LT;
+    }
+  };
 }
 #endif

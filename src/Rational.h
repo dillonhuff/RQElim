@@ -30,7 +30,7 @@ namespace RQElim {
     }
 
     friend std::ostream& operator<<(std::ostream& stream, const Rational& r) {
-      if (r.denominator == 0) {
+      if (r.denominator == 1) {
 	stream << r.numerator;
       } else {
 	stream << "(" << r.numerator << "/" << r.denominator << ")";
