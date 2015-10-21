@@ -82,6 +82,15 @@ namespace RQElim {
       auto derivMultidegree = derivativeMultidegree(var);
       return Monomial(resultCoeff, derivMultidegree);
     }
+
+    friend std::ostream& operator<<(std::ostream& stream, const Monomial& m) {
+      stream << m.coefficient;
+      for (int i = 0; i < m.numVars(); i++) {
+	stream << "x_" << i << "^" << m.multidegree[i] << " ";
+      }
+      return stream;
+    }
+
   };
 
 }

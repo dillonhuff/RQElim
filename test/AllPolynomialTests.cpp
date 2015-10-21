@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 
 #include "src/Polynomial.h"
@@ -44,10 +45,47 @@ namespace RQElim {
 
     testAssertion(correct == derivative, "oneTermDerivative");
   }
+
+  void multiTermDerivative() {
+    std::vector<int> c1;
+    c1.push_back(3);
+    c1.push_back(2);
+    Monomial m1(Rational(-5, 3), c1);
+
+    std::vector<int> c2;
+    c2.push_back(8);
+    c2.push_back(17);
+    Monomial m2(Rational(3, 1), c2);
+    
+    std::vector<Monomial> terms;
+    terms.push_back(m1);
+    terms.push_back(m2);
+    Polynomial p(terms);
+
+    auto derivative = p.derivative(1);
+
+    std::vector<int> mc1;
+    mc1.push_back(8);
+    mc1.push_back(16);
+    Monomial cm1(Rational(51, 1), mc1);
+
+    std::vector<int> mc2;
+    mc2.push_back(3);
+    mc2.push_back(1);
+    Monomial cm2(Rational(-10, 3), mc2);
+
+    std::vector<Monomial> correctTerms;
+    correctTerms.push_back(cm1);
+    correctTerms.push_back(cm2);
+    Polynomial correct(correctTerms);
+
+    testAssertion(correct == derivative, "multiTermDerivative");
+  }
   
   void allPolynomialTests() {
     equivalenceTestFail();
     oneTermDerivative();
+    multiTermDerivative();
     return;
   }
 

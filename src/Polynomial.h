@@ -40,6 +40,16 @@ namespace RQElim {
       }
       return Polynomial(derivTerms);
     }
+
+    friend std::ostream& operator<<(std::ostream& stream, const Polynomial& p) {
+      for (int i = 0; i < p.numTerms(); i++) {
+	stream << p.terms[i];
+	if (i != p.numTerms() - 1) {
+	  stream << " + ";
+	}
+      }
+      return stream;
+    }
   };
 }
 

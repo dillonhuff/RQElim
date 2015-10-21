@@ -28,6 +28,15 @@ namespace RQElim {
     Rational operator*(const Rational other) const {
       return Rational(numerator*other.numerator, denominator*other.denominator);
     }
+
+    friend std::ostream& operator<<(std::ostream& stream, const Rational& r) {
+      if (r.denominator == 0) {
+	stream << r.numerator;
+      } else {
+	stream << "(" << r.numerator << "/" << r.denominator << ")";
+      }
+      return stream;
+    }
   };
 
 }
